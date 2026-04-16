@@ -1,6 +1,8 @@
 package grupo6.clinicaOdontologica.model.entity;
 
+import grupo6.clinicaOdontologica.model.embeddable.NombreCompleto;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -17,13 +19,13 @@ import lombok.Setter;
 
 public class Odontologo extends BaseEntity {
 
-  @Column(name = "nombre", nullable = false, length = 80)  
-  private String nombre;
-
   @Column(name = "especialidad", nullable = false, length = 100)
   private String especialidad;
 
   @Column(name = "tarjetaProfesional", nullable = false, length = 20)
   private String tarjetaProfesional;
+
+  @Embedded
+  private NombreCompleto nombreCompleto;
 
 }

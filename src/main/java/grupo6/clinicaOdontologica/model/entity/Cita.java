@@ -1,5 +1,7 @@
 package grupo6.clinicaOdontologica.model.entity;
 
+import java.time.LocalDateTime;
+
 import grupo6.clinicaOdontologica.model.enums.EstadoCita;
 import grupo6.clinicaOdontologica.model.enums.MotivoCita;
 import jakarta.persistence.Column;
@@ -24,6 +26,9 @@ import lombok.Setter;
 
 public class Cita extends BaseEntity {
 
+@Column(name = "fecha_hora", nullable = false)
+private LocalDateTime fechaHora;
+
 @Enumerated(EnumType.STRING)
 @Column(name = "motivo", nullable = false, length = 100)
 private MotivoCita motivo;
@@ -42,5 +47,15 @@ private Odontologo odontologo;
 @ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name = "paciente_id", nullable = false)
 private Paciente paciente;
+
+public String getNombreAcudiente() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getNombreAcudiente'");
+}
+
+public void setCosto(double costoFinal) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'setCosto'");
+}
 
 }

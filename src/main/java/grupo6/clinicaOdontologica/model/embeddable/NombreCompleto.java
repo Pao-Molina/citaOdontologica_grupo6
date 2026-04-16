@@ -14,10 +14,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class NombreCompleto {
 
-    @Column(name = "nombres", nullable = false, length = 100)
-    private String nombres;
+    @Column(name = "nombre", nullable = false, length = 100)
+    private String nombre;
 
-    @Column(name = "apellidos", nullable = false, length = 100)
-    private String apellidos;
+    @Column(name = "apellido", nullable = false, length = 100)
+    private String apellido;
 
 }
