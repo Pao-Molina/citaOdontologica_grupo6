@@ -45,16 +45,11 @@ public class CitaService {
         Odontologo odontologo = odontologoService.findEntity(request.getOdontologo().getId());
         Paciente paciente = pacienteService.findEntity(request.getPaciente().getId());
 
-        // 1. Validar disponibilidad del odontólogo
+        
         validarDisponibilidadOdontologo(odontologo, request.getFechaHora());
-
-        // 2. Validar acudiente si es menor de edad
         validarAcudienteSiEsMenor(paciente, request.getNombreAcudiente());
-
-        // 3. Validar límite de citas pendientes por semana
         validarLimiteCitasSemanales(paciente, request.getFechaHora());
 
-        // 4. Calcular costo con descuento si aplica
         double costoFinal = calcularCosto(paciente.getTieneSeguro());
         request.setCosto(costoFinal);
 
@@ -90,7 +85,7 @@ public class CitaService {
     public Cita cancelarCita(Long id) {
         Cita cita = findEntity(id);
 
-        // 5. Validar tiempo mínimo para cancelación (2 horas)
+        //Tiempo mínimo para cancelación de cita (2 horas)
         LocalDateTime ahora = LocalDateTime.now();
         if (ahora.plusHours(2).isAfter(cita.getFechaHora())) {
             throw new IllegalStateException("No se puede cancelar con menos de 2 horas de antelación.");
@@ -103,7 +98,6 @@ public class CitaService {
     
 
     private void validarDisponibilidadOdontologo(Odontologo odontologo, LocalDateTime horario) {
-        
         boolean ocupado = citaRepository.existsByOdontologoIdAndFechaHora(odontologo.getId(), horario);
         if (ocupado) {
             throw new IllegalArgumentException("El odontólogo ya tiene una cita programada en ese horario.");

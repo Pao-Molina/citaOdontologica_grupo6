@@ -2,6 +2,8 @@ package grupo6.clinicaOdontologica.model.entity;
 
 import java.time.LocalDateTime;
 
+import org.springframework.data.annotation.Transient;
+
 import grupo6.clinicaOdontologica.model.enums.EstadoCita;
 import grupo6.clinicaOdontologica.model.enums.MotivoCita;
 import jakarta.persistence.Column;
@@ -34,7 +36,10 @@ private LocalDateTime fechaHora;
 private MotivoCita motivo;
 
 @Column(name = "costo", nullable = false)  
-private float costo;
+private Double costo;
+
+@Transient
+private String nombreAcudiente;
 
 @Enumerated(EnumType.STRING)
 @Column(name = "estado", nullable = false, length = 20)
@@ -48,14 +53,5 @@ private Odontologo odontologo;
 @JoinColumn(name = "paciente_id", nullable = false)
 private Paciente paciente;
 
-public String getNombreAcudiente() {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'getNombreAcudiente'");
-}
-
-public void setCosto(double costoFinal) {
-    // TODO Auto-generated method stub
-    throw new UnsupportedOperationException("Unimplemented method 'setCosto'");
-}
 
 }
